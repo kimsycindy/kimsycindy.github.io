@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.TextHeader {
+  text-rendering: optimizeLegibility;
+  text-align: center;
+
+  @media screen and (min-width: $breakpoint-md) {
+    text-align: left;
+  }
+}
+
+.header {
+  display: inline-block;
+  color: $black;
+  font-family: $font-header;
+  line-height: $lineHeight-heading;
+  font-weight: 400;
+  padding: 20px 8px;
+  text-transform: uppercase;
+}
+
+.h1 {
+  composes: header;
+  font-size: $fontSize-h1;
+  background-color: $primary;
+}
+
+.h2 {
+  composes: header;
+  font-size: $fontSize-h2;
+  background-color: $accent;
+}
+
+.h3 {
+  composes: header;
+  font-size: $fontSize-h3;
+}
+
+.h4,
+.h5,
+.h6 {
+  composes: header;
+  font-size: $fontSize-h4;
+}

@@ -1,0 +1,8 @@
+@import '../styles/variables.scss';
+
+.contentContainer {
+  @media screen and (min-width: $breakpoint-md) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

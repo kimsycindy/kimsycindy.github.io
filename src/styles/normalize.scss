@@ -1,0 +1,132 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Righteous&display=swap');
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: $fontSize-regular !important;
+  line-height: $lineHeight-regular !important;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-family: $font-sansSerif;
+  color: $gray-light;
+  background-color: $black;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+  position: relative;
+}
+
+figure {
+  margin: 2rem 0;
+}
+
+figcaption {
+  font-size: 80%;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid $light;
+  font-size: 85%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid $light;
+}
+
+th {
+  text-align: left;
+}
+
+tbody {
+  tr {
+    &:nth-of-type(odd) {
+      td {
+        background-color: $whisper;
+      }
+      tr {
+        background-color: $whisper;
+      }
+    }
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul,
+ol,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid $light;
+}
+
+blockquote {
+  margin: 0.8rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 0.25rem solid $light;
+  color: $gray-calm;
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
+  }
+}
+
+.gatsby-image-wrapper {
+  margin-bottom: 20px;
+}

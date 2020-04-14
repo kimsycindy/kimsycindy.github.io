@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.Page {
+  display: block;
+  flex: 1;
+  position: relative;
+  padding: $containerPadding;
+  margin-bottom: 3rem;
+}

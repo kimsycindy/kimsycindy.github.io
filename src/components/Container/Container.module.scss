@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.Container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: $width-lg;
+}
