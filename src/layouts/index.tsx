@@ -43,6 +43,13 @@ const IndexLayout: React.FC = ({ children }) => (
             },
             { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
+          link={[
+            {
+              href:
+                'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Righteous&display=swap',
+              rel: 'stylesheet',
+            },
+          ]}
         />
         <Navbar />
         <LayoutMain>{children}</LayoutMain>
