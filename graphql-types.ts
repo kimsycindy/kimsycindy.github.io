@@ -21,3 +21,15 @@ export interface Image {
     }
   }
 }
+
+export interface SiteMetadata {
+  title: string
+  description: string
+  keywords: string
+  siteUrl: string
+  author: {
+    name: string
+    url: string
+    email: string
+  }
+}

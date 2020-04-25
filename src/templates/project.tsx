@@ -1,22 +1,46 @@
-import * as React from 'react'
+import React from 'react'
 import { graphql, Link } from 'gatsby'
-import { BLOCKS, MARKS } from '@contentful/rich-text-types'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { BLOCKS, Document } from '@contentful/rich-text-types'
+import {
+  documentToReactComponents,
+  RenderNode,
+} from '@contentful/rich-text-react-renderer'
 
 import Page from '../components/Page'
 import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
 import IndexLayout from '../layouts'
+import FluidImageWrapper from '../components/FluidImageWrapper'
 
-const Bold = ({ children }: any) => <span className="bold">{children}</span>
-const Text = ({ children }: any) => <p className="align-center">{children}</p>
+interface RichTextRendererOptions {
+  renderNode: RenderNode
+}
 
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: (text: string) => <Bold>{text}</Bold>,
-  },
+const options: RichTextRendererOptions = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: any, children: any) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      const {
+        title,
+        file: {
+          'en-US': { contentType, url, details },
+        },
+      } = node.data.target.fields
+
+      if (contentType.includes('image')) {
+        return (
+          <FluidImageWrapper width={500}>
+            <img
+              src={url}
+              width={details.width}
+              height={details.height}
+              alt={title['en-US']}
+            />
+          </FluidImageWrapper>
+        )
+      }
+
+      return null
+    },
   },
 }
 
@@ -24,30 +48,24 @@ interface ProjectTemplateProps {
   data: {
     contentfulProject: {
       title: string
-      body: { json: string }
+      body: { json: Document }
     }
   }
 }
 
-const ProjectTemplate: React.FC<ProjectTemplateProps> = ({ data }) => {
-  return (
-    <IndexLayout>
-      <Page>
-        <Container>
-          <Link to="/projects">Go back</Link>
-          <TextHeader priority={1}>{data.contentfulProject.title}</TextHeader>
-          {/* eslint-disable react/no-danger */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: data.contentfulProject.body.json,
-            }}
-          />
-          {/* eslint-enable react/no-danger */}
-        </Container>
-      </Page>
-    </IndexLayout>
-  )
-}
+const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
+  data: { contentfulProject },
+}) => (
+  <IndexLayout>
+    <Page>
+      <Container>
+        <Link to="/projects">{'<'} all projects</Link>
+        <TextHeader priority={1}>{contentfulProject.title}</TextHeader>
+        {documentToReactComponents(contentfulProject.body.json, options)}
+      </Container>
+    </Page>
+  </IndexLayout>
+)
 
 export default ProjectTemplate
 

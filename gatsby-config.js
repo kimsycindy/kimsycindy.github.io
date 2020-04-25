@@ -5,9 +5,8 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Cindy Kim',
-    description:
-      'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
+    description: `Cindy Kim's personal website`,
+    keywords: 'cindy, kim, portfolio, artist, writing, art, personal',
     siteUrl: 'https://cindy.kim',
     author: {
       name: 'Cindy Kim',
@@ -28,6 +27,7 @@ module.exports = {
       options: {
         spaceId: 'o3gvfk02nk2l',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        forceFullSync: true,
       },
     },
     {
@@ -53,13 +53,13 @@ module.exports = {
         ],
       },
     },
-    'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: 'https://cindy.kim',
       },
     },
+    'gatsby-transformer-json',
     'gatsby-plugin-sass',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',

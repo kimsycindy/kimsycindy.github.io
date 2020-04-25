@@ -5,6 +5,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import 'modern-normalize'
 import '../styles/normalize.scss'
 
+import { SiteMetadata } from '../../graphql-types'
+
 import Navbar from '../components/Navbar'
 import LayoutRoot from '../components/LayoutRoot'
 import LayoutMain from '../components/LayoutMain'
@@ -12,11 +14,7 @@ import Footer from '../components/Footer'
 
 interface StaticQueryProps {
   site: {
-    siteMetadata: {
-      title: string
-      description: string
-      keywords: string
-    }
+    siteMetadata: SiteMetadata
   }
 }
 
@@ -28,6 +26,7 @@ const IndexLayout: React.FC = ({ children }) => (
           siteMetadata {
             title
             description
+            keywords
           }
         }
       }
