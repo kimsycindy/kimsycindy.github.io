@@ -1,10 +1,14 @@
+require('dotenv').config({
+  path: '.env',
+})
+
 module.exports = {
   siteMetadata: {
     title: 'Cindy Kim',
     description:
       'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
     keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    siteUrl: 'https://cindy.kim',
     author: {
       name: 'Cindy Kim',
       url: 'https://cindy.kim',
@@ -15,15 +19,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`,
+        name: 'images',
+        path: `${__dirname}/src/images`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: 'gatsby-source-contentful',
       options: {
-        name: 'images',
-        path: `${__dirname}/src/images`,
+        spaceId: 'o3gvfk02nk2l',
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     {
@@ -53,7 +57,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+        siteUrl: 'https://cindy.kim',
       },
     },
     'gatsby-plugin-sass',
