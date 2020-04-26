@@ -22,19 +22,20 @@ const options: RichTextRendererOptions = {
       const {
         title,
         file: {
-          'en-US': { contentType, url, details },
+          'en-US': {
+            contentType,
+            url,
+            details: {
+              image: { width, height },
+            },
+          },
         },
       } = node.data.target.fields
 
       if (contentType.includes('image')) {
         return (
-          <FluidImageWrapper width={500}>
-            <img
-              src={url}
-              width={details.width}
-              height={details.height}
-              alt={title['en-US']}
-            />
+          <FluidImageWrapper width={width}>
+            <img src={url} width={width} height={height} alt={title['en-US']} />
           </FluidImageWrapper>
         )
       }

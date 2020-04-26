@@ -42,14 +42,6 @@ img {
   position: relative;
 }
 
-figure {
-  margin: 2rem 0;
-}
-
-figcaption {
-  font-size: 80%;
-}
-
 table {
   width: 100%;
   margin-bottom: 1rem;
@@ -93,19 +85,8 @@ dl {
   margin-bottom: 1rem;
 }
 
-dt {
-  font-weight: bold;
-}
-
-dd {
-  margin-bottom: 0.5rem;
-}
-
-hr {
-  position: relative;
-  margin: 1.5rem 0;
-  border: 0;
-  border-top: 1px solid $light;
+ul {
+  list-style-type: square;
 }
 
 blockquote {
