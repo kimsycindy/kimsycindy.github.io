@@ -1,27 +1,17 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 
+import { ProjectGroupItem } from '../../graphql-types'
+
 import Page from '../components/Page'
 import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
 import IndexLayout from '../layouts'
 
-interface GroupItem {
-  nodes: ProjectNode[]
-}
-
-interface ProjectNode {
-  id: string
-  slug: string
-  title: string
-  date: string
-  year: number
-}
-
 interface Props {
   data: {
     allContentfulProject: {
-      group: GroupItem[]
+      group: ProjectGroupItem[]
     }
   }
 }

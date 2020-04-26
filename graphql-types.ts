@@ -33,3 +33,15 @@ export interface SiteMetadata {
     email: string
   }
 }
+
+export interface ProjectGroupItem {
+  nodes: ProjectNode[]
+}
+
+interface ProjectNode {
+  id: string
+  slug: string
+  title: string
+  date: string
+  year: number
+}
