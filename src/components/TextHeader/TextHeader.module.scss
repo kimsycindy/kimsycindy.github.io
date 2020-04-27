@@ -34,6 +34,7 @@
 .h3 {
   composes: header;
   font-size: $fontSize-h3;
+  background-color: $tertiary;
 }
 
 .h4,
@@ -41,4 +42,5 @@
 .h6 {
   composes: header;
   font-size: $fontSize-h4;
+  background-color: $tertiary;
 }

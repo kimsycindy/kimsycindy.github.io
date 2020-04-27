@@ -1,7 +1,8 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import groupBy from 'lodash.groupby'
 
-import { ProjectGroupItem } from '../../graphql-types'
+import { ProjectGroupNode } from '../../graphql-types'
 
 import Page from '../components/Page'
 import Container from '../components/Container'
@@ -11,7 +12,7 @@ import IndexLayout from '../layouts'
 interface Props {
   data: {
     allContentfulProject: {
-      group: ProjectGroupItem[]
+      group: ProjectGroupNode[]
     }
   }
 }
@@ -28,26 +29,55 @@ const ProjectsPage: React.FC<Props> = ({
       <Container>
         <TextHeader priority={1}>Projects</TextHeader>
         <p>Here's a list of my projects:</p>
-        {[...group].reverse().map(item => {
-          const { year } = item.nodes[0]
+        <div>
+          {[...group].map(category => {
+            const { title: categoryTitle } = category.nodes[0].category
 
-          return (
-            <div key={`projects-${year}`}>
-              <TextHeader priority={2}>{year.toString()}</TextHeader>
-              <ul>
-                {item.nodes.map(node => {
-                  const { id, slug, title } = node
+            const parsedCategory = category.nodes
+              .map(node => {
+                return {
+                  ...node,
+                  year: new Date(node.date).getFullYear(),
+                }
+              })
+              .sort((a, b) => {
+                // Sort by newest first
+                return new Date(b.date).getTime() - new Date(a.date).getTime()
+              })
 
-                  return (
-                    <li key={id}>
-                      <Link to={`${projectsPath}${slug}`}>{title}</Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )
-        })}
+            const groupedByYear = groupBy(parsedCategory, 'year')
+
+            return (
+              <>
+                <TextHeader priority={2}>{categoryTitle}</TextHeader>
+                <>
+                  {Object.keys(groupedByYear)
+                    .reverse()
+                    .map(year => {
+                      return (
+                        <div>
+                          <h3>{year}</h3>
+                          <ul>
+                            {groupedByYear[year].map(node => {
+                              const { id, slug, title } = node
+
+                              return (
+                                <li key={id}>
+                                  <Link to={`${projectsPath}${slug}`}>
+                                    {title}
+                                  </Link>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )
+                    })}
+                </>
+              </>
+            )
+          })}
+        </div>
       </Container>
     </Page>
   </IndexLayout>
@@ -58,13 +88,15 @@ export default ProjectsPage
 export const query = graphql`
   query ProjectsPage {
     allContentfulProject {
-      group(field: year) {
+      group(field: category___slug) {
         nodes {
           id
-          year
           slug
           title
           date
+          category {
+            title
+          }
         }
       }
     }

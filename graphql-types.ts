@@ -34,14 +34,17 @@ export interface SiteMetadata {
   }
 }
 
-export interface ProjectGroupItem {
+export interface ProjectGroupNode {
   nodes: ProjectNode[]
 }
 
-interface ProjectNode {
+export interface ProjectNode {
   id: string
   slug: string
   title: string
   date: string
-  year: number
+  year?: number
+  category: {
+    title: string
+  }
 }
