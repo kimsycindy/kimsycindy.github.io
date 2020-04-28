@@ -48,14 +48,14 @@ const ProjectsPage: React.FC<Props> = ({
             const groupedByYear = groupBy(parsedCategory, 'year')
 
             return (
-              <>
+              <div key={categoryTitle}>
                 <TextHeader priority={2}>{categoryTitle}</TextHeader>
                 <>
                   {Object.keys(groupedByYear)
                     .reverse()
                     .map(year => {
                       return (
-                        <div>
+                        <div key={`projects-${year}`}>
                           <h3>{year}</h3>
                           <ul>
                             {groupedByYear[year].map(node => {
@@ -74,7 +74,7 @@ const ProjectsPage: React.FC<Props> = ({
                       )
                     })}
                 </>
-              </>
+              </div>
             )
           })}
         </div>
