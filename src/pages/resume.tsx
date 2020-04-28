@@ -13,9 +13,9 @@ const ResumePage: React.FC = () => (
     <Page>
       <Container>
         <TextHeader priority={1}>Resume</TextHeader>
-        <p>I am interested in all sorts of things and nifty stuff.</p>
+        <p>I have a fairly versatile skillset! I'm perfectly comfortable either adjusting stage lighting from the rafters or sipping coffee at my desk.</p>
         <p>
-          Here's all the cool stuff I've done so far with more info on my{' '}
+          Here's what I've done so far, with more info on my{' '}
           <a href="https://www.linkedin.com/in/cindy-kim-924b48132/">
             LinkedIn.
           </a>
