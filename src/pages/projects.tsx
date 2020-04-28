@@ -28,7 +28,6 @@ const ProjectsPage: React.FC<Props> = ({
     <Page>
       <Container>
         <TextHeader priority={1}>Projects</TextHeader>
-        <p>Here's a list of my projects:</p>
         <div>
           {[...group].map(category => {
             const { title: categoryTitle } = category.nodes[0].category
