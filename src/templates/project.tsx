@@ -64,26 +64,23 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
     setModalIsOpen(false)
   }
 
-  const galleryPhotos = contentfulProject?.media?.map((image, index) => {
-    if (image) {
-      return {
-        src: image.file.url,
-        width: image.file.details.image.width,
-        height: image.file.details.image.height,
-        key: `${image.id}-${index}`,
-      }
-    }
+  const renderGallery = () => {
+    if (contentfulProject.media && contentfulProject.media.length > 0) {
+      const galleryPhotos = contentfulProject.media.map((image, index) => {
+        if (image) {
+          return {
+            src: image.file.url,
+            width: image.file.details.image.width,
+            height: image.file.details.image.height,
+            key: `${image.id}-${index}`,
+          }
+        }
 
-    return null
-  })
+        return null
+      })
 
-  return (
-    <IndexLayout>
-      <Page>
-        <Container>
-          <Link to="/projects">{'<'} all projects</Link>
-          <TextHeader priority={1}>{contentfulProject?.title ?? ''}</TextHeader>
-          {documentToReactComponents(contentfulProject?.body?.json, options)}
+      return (
+        <>
           <Gallery
             photos={galleryPhotos}
             onClick={(event, photos) => openLightbox(event, photos)}
@@ -101,6 +98,21 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
               </Modal>
             )}
           </ModalGateway>
+        </>
+      )
+    }
+
+    return null
+  }
+
+  return (
+    <IndexLayout>
+      <Page>
+        <Container>
+          <Link to="/projects">{'<'} all projects</Link>
+          <TextHeader priority={1}>{contentfulProject?.title ?? ''}</TextHeader>
+          {documentToReactComponents(contentfulProject?.body?.json, options)}
+          {renderGallery()}
         </Container>
       </Page>
     </IndexLayout>
