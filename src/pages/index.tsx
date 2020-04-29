@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
-import { Image } from '../../graphql-types'
+import { IndexImagesQuery } from '../../graphql-types'
 
 import Page from '../components/Page'
 import Container from '../components/Container'
@@ -11,21 +11,19 @@ import FluidImageWrapper from '../components/FluidImageWrapper/FluidImageWrapper
 import IndexLayout from '../layouts'
 
 interface Props {
-  data: {
-    image0: Image
-    image1: Image
-    image2: Image
-  }
+  data: IndexImagesQuery
 }
 
-const IndexPage: React.FC<Props> = ({ data }) => (
+const IndexPage: React.FC<Props> = ({ data: { image0, image1 } }) => (
   <IndexLayout>
     <Page>
       <Container>
         <TextHeader priority={1}>Hi, I'm Cindy.</TextHeader>
+
         <FluidImageWrapper width={500}>
-          <Img fluid={data.image1?.childImageSharp?.fluid} />
+          <Img fluid={image0?.childImageSharp?.fluid as FluidObject} />
         </FluidImageWrapper>
+
         <p>
           I am a writer and artist with experience in creative writing, social
           media, and copywriting.
@@ -42,10 +40,13 @@ const IndexPage: React.FC<Props> = ({ data }) => (
           able to glimpse where we're going.
         </p>
         <p>Or something like that.</p>
+
         <TextHeader priority={2}>What do I do?</TextHeader>
+
         <FluidImageWrapper width={500}>
-          <Img fluid={data.image2?.childImageSharp?.fluid} />
+          <Img fluid={image1?.childImageSharp?.fluid as FluidObject} />
         </FluidImageWrapper>
+
         <p>
           My work deals with the <i>effective intersection</i> of theatre and
           technology.
@@ -78,8 +79,8 @@ const IndexPage: React.FC<Props> = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
-  query {
-    image0: file(relativePath: { eq: "0.jpg" }) {
+  query IndexImages {
+    image0: file(relativePath: { eq: "1.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -87,15 +88,7 @@ export const query = graphql`
       }
     }
 
-    image1: file(relativePath: { eq: "1.jpg" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-
-    image2: file(relativePath: { eq: "2.png" }) {
+    image1: file(relativePath: { eq: "2.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid

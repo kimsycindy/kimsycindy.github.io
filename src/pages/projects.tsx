@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import groupBy from 'lodash.groupby'
 
-import { ProjectGroupNode } from '../../graphql-types'
+import { ProjectsPageQuery } from '../../graphql-types'
 
 import Page from '../components/Page'
 import Container from '../components/Container'
@@ -10,11 +10,7 @@ import TextHeader from '../components/TextHeader'
 import IndexLayout from '../layouts'
 
 interface Props {
-  data: {
-    allContentfulProject: {
-      group: ProjectGroupNode[]
-    }
-  }
+  data: ProjectsPageQuery
 }
 
 const projectsPath = '/projects/'
@@ -30,7 +26,7 @@ const ProjectsPage: React.FC<Props> = ({
         <TextHeader priority={1}>Projects</TextHeader>
         <div>
           {[...group].map(category => {
-            const { title: categoryTitle } = category.nodes[0].category
+            const categoryTitle = category?.nodes[0]?.category?.title ?? ''
 
             const parsedCategory = category.nodes
               .map(node => {

@@ -28,6 +28,7 @@ module.exports = {
         spaceId: 'o3gvfk02nk2l',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         forceFullSync: true,
+        downloadLocal: true,
       },
     },
     {
@@ -65,5 +66,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-graphql-codegen',
   ],
 }
