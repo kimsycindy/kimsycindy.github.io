@@ -4911,40 +4911,6 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
-export type IndexLayoutQueryVariables = {};
-
-
-export type IndexLayoutQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'keywords'>> }> };
-
-export type IndexImagesQueryVariables = {};
-
-
-export type IndexImagesQuery = { image0?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, image1?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
-
-export type ProjectsPageQueryVariables = {};
-
-
-export type ProjectsPageQuery = { allContentfulProject: { group: Array<{ nodes: Array<(
-        Pick<ContentfulProject, 'id' | 'slug' | 'title' | 'date'>
-        & { category?: Maybe<Pick<ContentfulProjectCategory, 'title'>> }
-      )> }> } };
-
-export type ProjectBySlugQueryVariables = {
-  slug: Scalars['String'];
-};
-
-
-export type ProjectBySlugQuery = { contentfulProject?: Maybe<(
-    Pick<ContentfulProject, 'title'>
-    & { body?: Maybe<Pick<ContentfulProjectBodyRichTextNode, 'json'>>, media?: Maybe<Array<Maybe<(
-      Pick<ContentfulAsset, 'id'>
-      & { file?: Maybe<(
-        Pick<ContentfulAssetFile, 'url'>
-        & { details?: Maybe<{ image?: Maybe<Pick<ContentfulAssetFileDetailsImage, 'height' | 'width'>> }> }
-      )> }
-    )>>> }
-  )> };
-
 export type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 export type GatsbyContentfulFixed_TracedSvgFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;

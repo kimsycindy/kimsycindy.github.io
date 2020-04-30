@@ -5,7 +5,7 @@ import {
   documentToReactComponents,
   RenderNode,
 } from '@contentful/rich-text-react-renderer'
-import Gallery, { PhotoClickHandler } from 'react-photo-gallery'
+import Gallery from 'react-photo-gallery'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 
 import { ProjectBySlugQuery } from '../../graphql-types'
@@ -69,9 +69,12 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
       const galleryPhotos = contentfulProject.media.map((image, index) => {
         if (image) {
           return {
-            src: image.file.url,
+            src: image.fluid.src,
+            srcSet: image.fluid.srcSet,
+            sizes: image.fluid.sizes,
             width: image.file.details.image.width,
             height: image.file.details.image.height,
+            description: image.description,
             key: `${image.id}-${index}`,
           }
         }
@@ -92,7 +95,7 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
                   currentIndex={currentImage}
                   views={galleryPhotos.map(photo => ({
                     source: photo.src,
-                    caption: '',
+                    caption: photo.description,
                   }))}
                 />
               </Modal>
@@ -130,8 +133,13 @@ export const query = graphql`
       }
       media {
         id
+        description
+        fluid(maxWidth: 2000) {
+          src
+          srcSet
+          sizes
+        }
         file {
-          url
           details {
             image {
               height
