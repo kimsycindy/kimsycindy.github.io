@@ -13,7 +13,7 @@
   display: inline-block;
   color: $black;
   font-family: $font-header;
-  line-height: 2.5rem;
+  line-height: 2.3rem;
   font-weight: 400;
   padding: 20px 8px;
   text-transform: uppercase;
@@ -22,26 +22,18 @@
 
 .h1 {
   composes: header;
-  font-size: $fontSize-h1;
   background-color: $primary;
 }
 
 .h2 {
   composes: header;
-  font-size: $fontSize-h2;
   background-color: $accent;
 }
 
-.h3 {
-  composes: header;
-  font-size: $fontSize-h3;
-  background-color: $tertiary;
-}
-
+.h3,
 .h4,
 .h5,
 .h6 {
   composes: header;
-  font-size: $fontSize-h4;
   background-color: $tertiary;
 }

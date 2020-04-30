@@ -1,0 +1,16 @@
+.GalleryImageRenderer {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.GalleryImageRenderer:hover {
+  filter: brightness(150%);
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 import { BLOCKS } from '@contentful/rich-text-types'
 import {
   documentToReactComponents,
@@ -10,9 +11,11 @@ import Carousel, { Modal, ModalGateway } from 'react-images'
 
 import { ProjectBySlugQuery } from '../../graphql-types'
 
+import styles from './project.module.scss'
 import Page from '../components/Page'
 import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
+import GalleryImageRenderer from '../components/GalleryImageRenderer'
 import IndexLayout from '../layouts'
 
 interface RichTextRendererOptions {
@@ -68,14 +71,26 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
     if (contentfulProject.media && contentfulProject.media.length > 0) {
       const galleryPhotos = contentfulProject.media.map((image, index) => {
         if (image) {
+          const {
+            id,
+            fluid: { aspectRatio, src, srcSet, sizes },
+            file: {
+              details: {
+                image: { width, height },
+              },
+            },
+            description,
+          } = image
+
           return {
-            src: image.fluid.src,
-            srcSet: image.fluid.srcSet,
-            sizes: image.fluid.sizes,
-            width: image.file.details.image.width,
-            height: image.file.details.image.height,
-            description: image.description,
-            key: `${image.id}-${index}`,
+            key: `${id}-${index}`,
+            aspectRatio,
+            src,
+            srcSet,
+            sizes,
+            width,
+            height,
+            description,
           }
         }
 
@@ -86,7 +101,9 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
         <>
           <Gallery
             photos={galleryPhotos}
-            onClick={(event, photos) => openLightbox(event, photos)}
+            renderImage={GalleryImageRenderer}
+            onClick={(event, photo) => openLightbox(event, photo)}
+            margin={2}
           />
           <ModalGateway>
             {modalIsOpen && (
@@ -134,10 +151,8 @@ export const query = graphql`
       media {
         id
         description
-        fluid(maxWidth: 2000) {
-          src
-          srcSet
-          sizes
+        fluid(maxWidth: 1500) {
+          ...GatsbyContentfulFluid
         }
         file {
           details {
