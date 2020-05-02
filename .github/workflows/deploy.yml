@@ -19,6 +19,8 @@ jobs:
           npm run build
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          GETFORM_KEY: ${{ secrets.GETFORM_KEY }}
+          NODE_ENV: production
 
       - name: Push to master
         uses: peaceiris/actions-gh-pages@v3.5.7
