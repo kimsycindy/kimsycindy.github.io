@@ -19,6 +19,7 @@ const FluidImageWrapper: React.FC<Props> = ({
       height,
       maxWidth: width,
       maxHeight: height,
+      marginBottom: 20,
     }}
   >
     {children}
