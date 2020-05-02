@@ -73,9 +73,9 @@ const ContactForm: React.FC = () => {
         >
           Submit
         </button>
-
-        {state.status && <p>{state.status.msg}</p>}
       </form>
+
+      {state.status && <p>{state.status.msg}</p>}
     </div>
   )
 }
