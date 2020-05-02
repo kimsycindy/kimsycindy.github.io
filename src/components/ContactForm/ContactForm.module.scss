@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.ContactForm {
+.formContainer {
   display: flex;
 }
 
@@ -29,9 +29,6 @@
   padding: 15px;
   cursor: pointer;
   font-weight: 600;
-  @media screen and (min-width: $breakpoint-md) {
-    width: initial;
-  }
 }
 
 .submitButton:hover {
@@ -40,4 +37,8 @@
 
 .submitButton:active {
   background-color: lighten($accent, 10%);
+}
+
+.failureMessage {
+  text-align: center;
 }

@@ -711,6 +711,7 @@ export type ContentfulProject = Node & {
   slug?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['Date']>;
   category?: Maybe<ContentfulProjectCategory>;
+  media?: Maybe<Array<Maybe<ContentfulAsset>>>;
   body?: Maybe<ContentfulProjectBodyRichTextNode>;
   spaceId?: Maybe<Scalars['String']>;
   contentful_id?: Maybe<Scalars['String']>;
@@ -718,7 +719,6 @@ export type ContentfulProject = Node & {
   updatedAt?: Maybe<Scalars['Date']>;
   sys?: Maybe<ContentfulProjectSys>;
   node_locale?: Maybe<Scalars['String']>;
-  media?: Maybe<Array<Maybe<ContentfulAsset>>>;
   childContentfulProjectBodyRichTextNode?: Maybe<ContentfulProjectBodyRichTextNode>;
 };
 
@@ -1162,44 +1162,18 @@ export type ContentfulProjectCategoryFieldsEnum =
   'project___category___project___title' |
   'project___category___project___slug' |
   'project___category___project___date' |
+  'project___category___project___media' |
   'project___category___project___spaceId' |
   'project___category___project___contentful_id' |
   'project___category___project___createdAt' |
   'project___category___project___updatedAt' |
   'project___category___project___node_locale' |
-  'project___category___project___media' |
   'project___category___spaceId' |
   'project___category___contentful_id' |
   'project___category___createdAt' |
   'project___category___updatedAt' |
   'project___category___sys___revision' |
   'project___category___node_locale' |
-  'project___body___id' |
-  'project___body___parent___id' |
-  'project___body___parent___children' |
-  'project___body___children' |
-  'project___body___children___id' |
-  'project___body___children___children' |
-  'project___body___internal___content' |
-  'project___body___internal___contentDigest' |
-  'project___body___internal___description' |
-  'project___body___internal___fieldOwners' |
-  'project___body___internal___ignoreType' |
-  'project___body___internal___mediaType' |
-  'project___body___internal___owner' |
-  'project___body___internal___type' |
-  'project___body___content' |
-  'project___body___content___content' |
-  'project___body___content___nodeType' |
-  'project___body___nodeType' |
-  'project___body___body' |
-  'project___body___json' |
-  'project___spaceId' |
-  'project___contentful_id' |
-  'project___createdAt' |
-  'project___updatedAt' |
-  'project___sys___revision' |
-  'project___node_locale' |
   'project___media' |
   'project___media___id' |
   'project___media___parent___id' |
@@ -1299,6 +1273,32 @@ export type ContentfulProjectCategoryFieldsEnum =
   'project___media___resize___width' |
   'project___media___resize___height' |
   'project___media___resize___aspectRatio' |
+  'project___body___id' |
+  'project___body___parent___id' |
+  'project___body___parent___children' |
+  'project___body___children' |
+  'project___body___children___id' |
+  'project___body___children___children' |
+  'project___body___internal___content' |
+  'project___body___internal___contentDigest' |
+  'project___body___internal___description' |
+  'project___body___internal___fieldOwners' |
+  'project___body___internal___ignoreType' |
+  'project___body___internal___mediaType' |
+  'project___body___internal___owner' |
+  'project___body___internal___type' |
+  'project___body___content' |
+  'project___body___content___content' |
+  'project___body___content___nodeType' |
+  'project___body___nodeType' |
+  'project___body___body' |
+  'project___body___json' |
+  'project___spaceId' |
+  'project___contentful_id' |
+  'project___createdAt' |
+  'project___updatedAt' |
+  'project___sys___revision' |
+  'project___node_locale' |
   'project___childContentfulProjectBodyRichTextNode___id' |
   'project___childContentfulProjectBodyRichTextNode___parent___id' |
   'project___childContentfulProjectBodyRichTextNode___parent___children' |
@@ -1577,6 +1577,13 @@ export type ContentfulProjectFieldsEnum =
   'category___project___category___createdAt' |
   'category___project___category___updatedAt' |
   'category___project___category___node_locale' |
+  'category___project___media' |
+  'category___project___media___id' |
+  'category___project___media___children' |
+  'category___project___media___contentful_id' |
+  'category___project___media___title' |
+  'category___project___media___description' |
+  'category___project___media___node_locale' |
   'category___project___body___id' |
   'category___project___body___children' |
   'category___project___body___content' |
@@ -1589,13 +1596,6 @@ export type ContentfulProjectFieldsEnum =
   'category___project___updatedAt' |
   'category___project___sys___revision' |
   'category___project___node_locale' |
-  'category___project___media' |
-  'category___project___media___id' |
-  'category___project___media___children' |
-  'category___project___media___contentful_id' |
-  'category___project___media___title' |
-  'category___project___media___description' |
-  'category___project___media___node_locale' |
   'category___project___childContentfulProjectBodyRichTextNode___id' |
   'category___project___childContentfulProjectBodyRichTextNode___children' |
   'category___project___childContentfulProjectBodyRichTextNode___content' |
@@ -1608,63 +1608,6 @@ export type ContentfulProjectFieldsEnum =
   'category___updatedAt' |
   'category___sys___revision' |
   'category___node_locale' |
-  'body___id' |
-  'body___parent___id' |
-  'body___parent___parent___id' |
-  'body___parent___parent___children' |
-  'body___parent___children' |
-  'body___parent___children___id' |
-  'body___parent___children___children' |
-  'body___parent___internal___content' |
-  'body___parent___internal___contentDigest' |
-  'body___parent___internal___description' |
-  'body___parent___internal___fieldOwners' |
-  'body___parent___internal___ignoreType' |
-  'body___parent___internal___mediaType' |
-  'body___parent___internal___owner' |
-  'body___parent___internal___type' |
-  'body___children' |
-  'body___children___id' |
-  'body___children___parent___id' |
-  'body___children___parent___children' |
-  'body___children___children' |
-  'body___children___children___id' |
-  'body___children___children___children' |
-  'body___children___internal___content' |
-  'body___children___internal___contentDigest' |
-  'body___children___internal___description' |
-  'body___children___internal___fieldOwners' |
-  'body___children___internal___ignoreType' |
-  'body___children___internal___mediaType' |
-  'body___children___internal___owner' |
-  'body___children___internal___type' |
-  'body___internal___content' |
-  'body___internal___contentDigest' |
-  'body___internal___description' |
-  'body___internal___fieldOwners' |
-  'body___internal___ignoreType' |
-  'body___internal___mediaType' |
-  'body___internal___owner' |
-  'body___internal___type' |
-  'body___content' |
-  'body___content___content' |
-  'body___content___content___marks' |
-  'body___content___content___value' |
-  'body___content___content___nodeType' |
-  'body___content___nodeType' |
-  'body___nodeType' |
-  'body___body' |
-  'body___json' |
-  'spaceId' |
-  'contentful_id' |
-  'createdAt' |
-  'updatedAt' |
-  'sys___revision' |
-  'sys___contentType___sys___type' |
-  'sys___contentType___sys___linkType' |
-  'sys___contentType___sys___id' |
-  'sys___contentType___sys___contentful_id' |
-  'node_locale' |
   'media' |
   'media___id' |
   'media___parent___id' |
@@ -1803,6 +1746,63 @@ export type ContentfulProjectFieldsEnum =
   'media___resize___width' |
   'media___resize___height' |
   'media___resize___aspectRatio' |
+  'body___id' |
+  'body___parent___id' |
+  'body___parent___parent___id' |
+  'body___parent___parent___children' |
+  'body___parent___children' |
+  'body___parent___children___id' |
+  'body___parent___children___children' |
+  'body___parent___internal___content' |
+  'body___parent___internal___contentDigest' |
+  'body___parent___internal___description' |
+  'body___parent___internal___fieldOwners' |
+  'body___parent___internal___ignoreType' |
+  'body___parent___internal___mediaType' |
+  'body___parent___internal___owner' |
+  'body___parent___internal___type' |
+  'body___children' |
+  'body___children___id' |
+  'body___children___parent___id' |
+  'body___children___parent___children' |
+  'body___children___children' |
+  'body___children___children___id' |
+  'body___children___children___children' |
+  'body___children___internal___content' |
+  'body___children___internal___contentDigest' |
+  'body___children___internal___description' |
+  'body___children___internal___fieldOwners' |
+  'body___children___internal___ignoreType' |
+  'body___children___internal___mediaType' |
+  'body___children___internal___owner' |
+  'body___children___internal___type' |
+  'body___internal___content' |
+  'body___internal___contentDigest' |
+  'body___internal___description' |
+  'body___internal___fieldOwners' |
+  'body___internal___ignoreType' |
+  'body___internal___mediaType' |
+  'body___internal___owner' |
+  'body___internal___type' |
+  'body___content' |
+  'body___content___content' |
+  'body___content___content___marks' |
+  'body___content___content___value' |
+  'body___content___content___nodeType' |
+  'body___content___nodeType' |
+  'body___nodeType' |
+  'body___body' |
+  'body___json' |
+  'spaceId' |
+  'contentful_id' |
+  'createdAt' |
+  'updatedAt' |
+  'sys___revision' |
+  'sys___contentType___sys___type' |
+  'sys___contentType___sys___linkType' |
+  'sys___contentType___sys___id' |
+  'sys___contentType___sys___contentful_id' |
+  'node_locale' |
   'childContentfulProjectBodyRichTextNode___id' |
   'childContentfulProjectBodyRichTextNode___parent___id' |
   'childContentfulProjectBodyRichTextNode___parent___parent___id' |
@@ -1860,6 +1860,7 @@ export type ContentfulProjectFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
   category?: Maybe<ContentfulProjectCategoryFilterInput>;
+  media?: Maybe<ContentfulAssetFilterListInput>;
   body?: Maybe<ContentfulProjectBodyRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
@@ -1867,7 +1868,6 @@ export type ContentfulProjectFilterInput = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulProjectSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  media?: Maybe<ContentfulAssetFilterListInput>;
   childContentfulProjectBodyRichTextNode?: Maybe<ContentfulProjectBodyRichTextNodeFilterInput>;
 };
 
@@ -3860,6 +3860,7 @@ export type QueryContentfulProjectArgs = {
   slug?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
   category?: Maybe<ContentfulProjectCategoryFilterInput>;
+  media?: Maybe<ContentfulAssetFilterListInput>;
   body?: Maybe<ContentfulProjectBodyRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
@@ -3867,7 +3868,6 @@ export type QueryContentfulProjectArgs = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulProjectSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  media?: Maybe<ContentfulAssetFilterListInput>;
   childContentfulProjectBodyRichTextNode?: Maybe<ContentfulProjectBodyRichTextNodeFilterInput>;
 };
 

@@ -2,7 +2,12 @@ import React, { useReducer } from 'react'
 
 import styles from './ContactForm.module.scss'
 
-import { GETFORM_ENDPOINT, SUCCESS_MESSAGE, FAILURE_MESSAGE } from './constants'
+import {
+  GETFORM_ENDPOINT,
+  SUCCESS_MESSAGE,
+  FAILURE_MESSAGE,
+  SUBMITTING_MESSAGE,
+} from './constants'
 import { reducer, initialState } from './reducer'
 import { valueChanged, submitStart, submitStop } from './actions'
 
@@ -37,45 +42,70 @@ const ContactForm: React.FC = () => {
     dispatch(valueChanged(name, value))
   }
 
+  const renderSubmitButton = () => {
+    const {
+      submitting,
+      status: { ok, msg },
+    } = state
+
+    let text = ''
+
+    if (submitting) {
+      text = SUBMITTING_MESSAGE
+    } else if (ok) {
+      text = msg
+    } else {
+      text = 'Send'
+    }
+
+    return (
+      <button
+        className={styles.submitButton}
+        type="submit"
+        disabled={submitting || ok}
+      >
+        {text}
+      </button>
+    )
+  }
+
   return (
     <div className={styles.ContactForm}>
-      <form onSubmit={handleOnSubmit}>
-        <Text
-          onChange={onTextChange}
-          value={state.email}
-          type="email"
-          name="email"
-          label="Email"
-          required
-        />
+      <div className={styles.formContainer}>
+        <form onSubmit={handleOnSubmit}>
+          <Text
+            onChange={onTextChange}
+            value={state.email}
+            type="email"
+            name="email"
+            label="Email"
+            required
+          />
 
-        <Text
-          onChange={onTextChange}
-          value={state.name}
-          type="text"
-          name="name"
-          label="Name"
-          required
-        />
+          <Text
+            onChange={onTextChange}
+            value={state.name}
+            type="text"
+            name="name"
+            label="Name"
+            required
+          />
 
-        <Textarea
-          onChange={onTextChange}
-          value={state.message}
-          name="message"
-          label="Message"
-          required
-        />
+          <Textarea
+            onChange={onTextChange}
+            value={state.message}
+            name="message"
+            label="Message"
+            required
+          />
 
-        <button
-          className={styles.submitButton}
-          type="submit"
-          disabled={state.submitting}
-        >
-          Submit
-        </button>
-      </form>
+          {renderSubmitButton()}
 
-      {state.status && <p>{state.status.msg}</p>}
+          <div className={styles.failureMessage}>
+            {state.status.msg === FAILURE_MESSAGE && state.status.msg}
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
