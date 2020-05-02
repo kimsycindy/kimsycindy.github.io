@@ -1,0 +1,8 @@
+@import '../../../styles/variables.scss';
+
+.textarea {
+  background-color: $gray-light;
+  padding: 10px;
+  line-height: $lineHeight-regular;
+  width: 100%;
+}

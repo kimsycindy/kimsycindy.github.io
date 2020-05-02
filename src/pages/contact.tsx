@@ -6,18 +6,20 @@ import TextHeader from '../components/TextHeader'
 import ContactForm from '../components/ContactForm'
 import IndexLayout from '../layouts'
 
-const ContactPage: React.FC = () => {
-  console.log(process.env.GETFORM_KEY)
-  return (
-    <IndexLayout>
-      <Page>
-        <Container>
-          <TextHeader priority={1}>Contact</TextHeader>
-          <ContactForm />
-        </Container>
-      </Page>
-    </IndexLayout>
-  )
-}
+const ContactPage: React.FC = () => (
+  <IndexLayout>
+    <Page>
+      <Container>
+        <TextHeader priority={1}>Contact</TextHeader>
+        <p>
+          You can email me at{' '}
+          <a href="mailto:hello@cindy.kim">hello@cindy.kim</a> or use the form
+          below.
+        </p>
+        <ContactForm />
+      </Container>
+    </Page>
+  </IndexLayout>
+)
 
 export default ContactPage

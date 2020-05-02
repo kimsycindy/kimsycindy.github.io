@@ -15,8 +15,6 @@ const FluidImageWrapper: React.FC<Props> = ({
   <div
     className={className}
     style={{
-      width,
-      height,
       maxWidth: width,
       maxHeight: height,
       marginBottom: 20,

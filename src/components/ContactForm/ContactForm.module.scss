@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.ContactForm {
+  display: flex;
+}
+
+.ContactForm form {
+  display: inline-block;
+  margin: 0 auto;
+
+  @media screen and (min-width: $breakpoint-md) {
+    display: block;
+    margin: 0;
+  }
+}
+
+.ContactForm form > * {
+  margin-bottom: 20px;
+}
+
+.ContactForm form:last-child {
+  margin-bottom: 0;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: $accent;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  @media screen and (min-width: $breakpoint-md) {
+    width: initial;
+  }
+}
+
+.submitButton:hover {
+  background-color: lighten($accent, 5%);
+}
+
+.submitButton:active {
+  background-color: lighten($accent, 10%);
+}

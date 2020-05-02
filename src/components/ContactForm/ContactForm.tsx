@@ -1,87 +1,82 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useReducer } from 'react'
+
 import styles from './ContactForm.module.scss'
 
-interface ServerState {
-  submitting: boolean
-  status?: {
-    ok: boolean
-    msg: string
-  }
-}
+import { GETFORM_ENDPOINT, SUCCESS_MESSAGE, FAILURE_MESSAGE } from './constants'
+import { reducer, initialState } from './reducer'
+import { valueChanged, submitStart, submitStop } from './actions'
+
+import { Text, FormControlsTextElement } from '../FormControls/Text'
+import { Textarea, FormControlsTextareaElement } from '../FormControls/Textarea'
 
 const ContactForm: React.FC = () => {
-  const [serverState, setServerState] = useState<ServerState>({
-    submitting: false,
-    status: {
-      ok: false,
-      msg: '',
-    },
-  })
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleServerResponse = (
-    ok: boolean,
-    msg: string,
-    form: HTMLFormElement
-  ) => {
-    setServerState({
-      submitting: false,
-      status: { ok, msg },
-    })
-
-    if (ok) {
-      form.reset()
-    }
-  }
-
-  const handleOnSubmit = (e: FormEvent) => {
+  const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
+    dispatch(submitStart())
 
-    setServerState({ submitting: true })
-
-    fetch(`https://getform.io/f/${process.env.GETFORM_KEY}`, {
+    fetch(GETFORM_ENDPOINT, {
       method: 'POST',
       body: new FormData(form),
     })
       .then(() => {
-        handleServerResponse(true, 'Thanks!', form)
+        dispatch(submitStop(true, SUCCESS_MESSAGE))
+        form.reset()
       })
-      .catch(res => {
-        handleServerResponse(false, res.response.data.error, form)
+      .catch(() => {
+        dispatch(submitStop(false, FAILURE_MESSAGE))
       })
   }
 
+  const onTextChange = (
+    e: React.ChangeEvent<FormControlsTextElement | FormControlsTextareaElement>
+  ) => {
+    const { name, value } = e.target
+    dispatch(valueChanged(name, value))
+  }
+
   return (
-    <form onSubmit={handleOnSubmit}>
-      <div className="form-group">
-        <label htmlFor="email">
-          Email
-          <input type="email" name="email" placeholder="Enter email" required />
-        </label>
-      </div>
+    <div className={styles.ContactForm}>
+      <form onSubmit={handleOnSubmit}>
+        <Text
+          onChange={onTextChange}
+          value={state.email}
+          type="email"
+          name="email"
+          label="Email"
+          required
+        />
 
-      <div className="form-group">
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            required
-          />
-        </label>
-      </div>
+        <Text
+          onChange={onTextChange}
+          value={state.name}
+          type="text"
+          name="name"
+          label="Name"
+          required
+        />
 
-      <button
-        type="submit"
-        className="btn btn-primary"
-        disabled={serverState.submitting}
-      >
-        Submit
-      </button>
+        <Textarea
+          onChange={onTextChange}
+          value={state.message}
+          name="message"
+          label="Message"
+          required
+        />
 
-      {serverState.status && <p>{serverState.status.msg}</p>}
-    </form>
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={state.submitting}
+        >
+          Submit
+        </button>
+
+        {state.status && <p>{state.status.msg}</p>}
+      </form>
+    </div>
   )
 }
 
