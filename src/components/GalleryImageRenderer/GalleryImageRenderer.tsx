@@ -4,32 +4,28 @@ import { RenderImageProps } from 'react-photo-gallery'
 
 import styles from './GalleryImageRenderer.module.scss'
 
-interface OwnProps {
-  photo: {
-    aspectRatio: number
-  }
-}
-
-type Props = OwnProps & RenderImageProps
-
-const GalleryImageRenderer: React.FC<Props> = ({
+const GalleryImageRenderer: React.FC<RenderImageProps> = ({
   index,
   photo,
   margin,
   onClick,
 }) => {
   const fluidObject: FluidObject = {
-    aspectRatio: photo.aspectRatio,
+    aspectRatio: photo.width / photo.height,
     src: photo.src,
-    srcSet: photo.srcSet.toString(),
-    sizes: photo.sizes.toString(),
+    srcSet: photo.srcSet?.toString() ?? '',
+    sizes: photo.sizes?.toString() ?? '',
   }
 
   return (
     <button
       type="button"
       key={photo.key}
-      onClick={event => onClick(event, { ...photo, index })}
+      onClick={event => {
+        if (onClick) {
+          onClick(event, { ...photo, index })
+        }
+      }}
       style={{ margin, width: photo.width, height: photo.height }}
       className={styles.GalleryImageRenderer}
     >

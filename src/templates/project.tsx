@@ -1,28 +1,24 @@
 import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { isFilled } from 'ts-is-present'
+import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import {
   documentToReactComponents,
-  RenderNode,
+  Options,
 } from '@contentful/rich-text-react-renderer'
-import Gallery from 'react-photo-gallery'
+import Gallery, { renderImageClickHandler } from 'react-photo-gallery'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 
+import styles from './project.module.scss'
 import { ProjectBySlugQuery } from '../../graphql-types'
 
-import styles from './project.module.scss'
 import Page from '../components/Page'
 import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
 import GalleryImageRenderer from '../components/GalleryImageRenderer'
 import IndexLayout from '../layouts'
 
-interface RichTextRendererOptions {
-  renderNode: RenderNode
-}
-
-const options: RichTextRendererOptions = {
+const options: Options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: node => {
       const {
@@ -46,6 +42,22 @@ const options: RichTextRendererOptions = {
 
       return null
     },
+    [INLINES.HYPERLINK]: node => {
+      return (
+        <div className={styles.iframeWrapper}>
+          <iframe
+            // value "doesn't exist" on content so ignoring it for now
+            // eslint-disable-next-line
+            // @ts-ignore
+            title={node.content[0].value ?? 'YouTube embedded video'}
+            src={node.data.uri}
+            frameBorder={0}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )
+    },
   },
 }
 
@@ -53,11 +65,12 @@ interface Props {
   data: ProjectBySlugQuery
 }
 
-const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
+const ProjectTemplate: React.FC<Props> = ({ data }) => {
   const [currentImage, setCurrentImage] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const { contentfulProject } = data
 
-  const openLightbox = (event, { index }) => {
+  const openLightbox: renderImageClickHandler = (_event, { index }) => {
     setCurrentImage(index)
     setModalIsOpen(true)
   }
@@ -68,34 +81,39 @@ const ProjectTemplate: React.FC<Props> = ({ data: { contentfulProject } }) => {
   }
 
   const renderGallery = () => {
-    if (contentfulProject.media && contentfulProject.media.length > 0) {
-      const galleryPhotos = contentfulProject.media.map((image, index) => {
-        if (image) {
-          const {
-            id,
-            fluid: { aspectRatio, src, srcSet, sizes },
-            file: {
-              details: {
-                image: { width, height },
+    if (
+      contentfulProject &&
+      contentfulProject.media &&
+      contentfulProject.media.length > 0
+    ) {
+      const galleryPhotos = contentfulProject.media
+        .map((image, index) => {
+          if (image && image.fluid && image.file?.details?.image) {
+            const {
+              id,
+              description,
+              fluid: { src, srcSet, sizes },
+              file: {
+                details: {
+                  image: { width, height },
+                },
               },
-            },
-            description,
-          } = image
+            } = image
 
-          return {
-            key: `${id}-${index}`,
-            aspectRatio,
-            src,
-            srcSet,
-            sizes,
-            width,
-            height,
-            description,
+            return {
+              description,
+              src,
+              srcSet,
+              sizes,
+              width: width ?? 0,
+              height: height ?? 0,
+              key: `${id}-${index}`,
+            }
           }
-        }
 
-        return null
-      })
+          return null
+        })
+        .filter(isFilled)
 
       return (
         <>
