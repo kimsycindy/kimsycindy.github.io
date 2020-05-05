@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormControls Text renders correctly 1`] = `
+<div>
+  <label
+    htmlFor="mock"
+  >
+    Mock
+    <br />
+    <input
+      className="input"
+      name="mock"
+      onChange={[MockFunction]}
+      placeholder="Placeholder"
+      required={true}
+      type="text"
+      value=""
+    />
+  </label>
+</div>
+`;

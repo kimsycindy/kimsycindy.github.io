@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextHeader renders correctly 1`] = `
+<h1
+  className="TextHeader"
+>
+  <span
+    className="h1"
+  >
+    Hello world!
+  </span>
+</h1>
+`;

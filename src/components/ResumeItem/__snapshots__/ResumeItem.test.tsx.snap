@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResumeItem renders correctly 1`] = `
+<p>
+  <strong>
+    Mock Company
+  </strong>
+   | 
+  Mock Subtitle
+  <br />
+  Mock Position
+</p>
+`;
+
+exports[`ResumeItem renders correctly without position prop 1`] = `
+<p>
+  <strong>
+    Mock Company
+  </strong>
+   | 
+  Mock Subtitle
+</p>
+`;

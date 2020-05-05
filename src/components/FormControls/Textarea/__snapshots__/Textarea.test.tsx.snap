@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormControls Textarea renders correctly 1`] = `
+<div>
+  <label
+    htmlFor="mock"
+  >
+    Mock
+    <br />
+    <textarea
+      className="textarea"
+      cols={33}
+      name="mock"
+      onChange={[MockFunction]}
+      placeholder="Placeholder"
+      required={true}
+      rows={5}
+      value=""
+    />
+  </label>
+</div>
+`;
