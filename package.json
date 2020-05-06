@@ -92,6 +92,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix && npm run format && npm run test"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "npm run test"
+    ]
   }
 }

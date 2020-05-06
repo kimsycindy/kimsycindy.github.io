@@ -66,6 +66,9 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-graphql-codegen',
   ],
+}
+
+if (process.env.NODE_ENV === 'development') {
+  module.exports.plugins.push('gatsby-plugin-graphql-codegen')
 }
