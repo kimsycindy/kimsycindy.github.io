@@ -13,6 +13,7 @@ import { valueChanged, submitStart, submitStop } from './actions'
 
 import { Text, FormControlsTextElement } from '../FormControls/Text'
 import { Textarea, FormControlsTextareaElement } from '../FormControls/Textarea'
+import { SubmitButton } from '../Button'
 
 const ContactForm: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -40,33 +41,6 @@ const ContactForm: React.FC = () => {
   ) => {
     const { name, value } = e.target
     dispatch(valueChanged(name, value))
-  }
-
-  const renderSubmitButton = () => {
-    const {
-      submitting,
-      status: { ok, msg },
-    } = state
-
-    let text = ''
-
-    if (submitting) {
-      text = SUBMITTING_MESSAGE
-    } else if (ok) {
-      text = msg
-    } else {
-      text = 'Send'
-    }
-
-    return (
-      <button
-        className={styles.submitButton}
-        type="submit"
-        disabled={submitting || ok}
-      >
-        {text}
-      </button>
-    )
   }
 
   return (
@@ -99,7 +73,13 @@ const ContactForm: React.FC = () => {
             required
           />
 
-          {renderSubmitButton()}
+          <SubmitButton
+            submitting={state.submitting}
+            submittingText={SUBMITTING_MESSAGE}
+            status={state.status}
+          >
+            Send
+          </SubmitButton>
 
           <div className={styles.failureMessage}>
             {state.status.msg === FAILURE_MESSAGE && state.status.msg}

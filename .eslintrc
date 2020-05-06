@@ -31,6 +31,7 @@
         ]
       }
     ],
+    "react/button-has-type": "off",
     "default-case": 0
   }
 }

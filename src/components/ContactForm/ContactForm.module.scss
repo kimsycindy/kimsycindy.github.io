@@ -22,23 +22,6 @@
   margin-bottom: 0;
 }
 
-.submitButton {
-  width: 100%;
-  background-color: $accent;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.submitButton:hover {
-  background-color: lighten($accent, 5%);
-}
-
-.submitButton:active {
-  background-color: lighten($accent, 10%);
-}
-
 .failureMessage {
   text-align: center;
 }
