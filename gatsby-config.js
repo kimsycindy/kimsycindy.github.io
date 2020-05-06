@@ -27,31 +27,6 @@ module.exports = {
       options: {
         spaceId: 'o3gvfk02nk2l',
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        forceFullSync: true,
-        downloadLocal: true,
-      },
-    },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: {
-              wrapperStyle: 'margin-bottom: 1rem',
-            },
-          },
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1140,
-              quality: 90,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
       },
     },
     {

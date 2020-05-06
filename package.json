@@ -15,7 +15,7 @@
     "build": "gatsby build --prefix-paths",
     "dev": "gatsby develop",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,md}\"",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "start": "npm run dev",
     "test": "jest"
   },
@@ -92,7 +92,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "eslint --cache --fix",
       "npm run test"
     ]
