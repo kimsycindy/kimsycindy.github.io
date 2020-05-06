@@ -13,7 +13,7 @@ import { valueChanged, submitStart, submitStop } from './actions'
 
 import { Text, FormControlsTextElement } from '../FormControls/Text'
 import { Textarea, FormControlsTextareaElement } from '../FormControls/Textarea'
-import { SubmitButton } from '../Button'
+import SubmitButton from '../SubmitButton'
 
 const ContactForm: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
