@@ -16,7 +16,9 @@ const ContactPage: React.FC = () => (
           <a href="mailto:hello@cindy.kim">hello@cindy.kim</a> or use the form
           below.
         </p>
-        <ContactForm />
+        {process.env.GATSBY_GETFORM_KEY && (
+          <ContactForm getFormKey={process.env.GATSBY_GETFORM_KEY} />
+        )}
       </Container>
     </Page>
   </IndexLayout>

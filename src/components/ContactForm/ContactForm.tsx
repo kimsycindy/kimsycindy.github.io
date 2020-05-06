@@ -15,7 +15,11 @@ import { Text, FormControlsTextElement } from '../FormControls/Text'
 import { Textarea, FormControlsTextareaElement } from '../FormControls/Textarea'
 import SubmitButton from '../SubmitButton'
 
-const ContactForm: React.FC = () => {
+interface Props {
+  getFormKey: string
+}
+
+const ContactForm: React.FC<Props> = ({ getFormKey }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleOnSubmit = (e: React.FormEvent) => {
@@ -23,7 +27,7 @@ const ContactForm: React.FC = () => {
     const form = e.target as HTMLFormElement
     dispatch(submitStart())
 
-    fetch(GETFORM_ENDPOINT, {
+    fetch(`${GETFORM_ENDPOINT}${getFormKey}`, {
       method: 'POST',
       body: new FormData(form),
     })
