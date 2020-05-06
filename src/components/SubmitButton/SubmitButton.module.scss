@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.SubmitButton:hover {
+  background-color: lighten($accent, 5%);
+}
+
+.SubmitButton:active {
+  background-color: lighten($accent, 10%);
+}

@@ -8,11 +8,3 @@
   cursor: pointer;
   font-weight: 600;
 }
-
-.SubmitButton:hover {
-  background-color: lighten($accent, 5%);
-}
-
-.SubmitButton:active {
-  background-color: lighten($accent, 10%);
-}
