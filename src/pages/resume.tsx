@@ -1,4 +1,5 @@
 import React from 'react'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import styles from './resume.module.scss'
 
@@ -13,12 +14,16 @@ const ResumePage: React.FC = () => (
     <Page>
       <Container>
         <TextHeader priority={1}>Resume</TextHeader>
-        <p>I have a fairly versatile skillset! I'm perfectly comfortable either adjusting stage lighting from the rafters or sipping coffee at my desk.</p>
+        <p>
+          I have a fairly versatile skillset! I'm perfectly comfortable either
+          adjusting stage lighting from the rafters or sipping coffee at my
+          desk.
+        </p>
         <p>
           Here's what I've done so far, with more info on my{' '}
-          <a href="https://www.linkedin.com/in/cindy-kim-924b48132/">
+          <OutboundLink href="https://www.linkedin.com/in/cindy-kim-924b48132/">
             LinkedIn.
-          </a>
+          </OutboundLink>
         </p>
         <div className={styles.contentContainer}>
           <div>

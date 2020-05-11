@@ -3991,6 +3991,12 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___spaceId' |
   'pluginCreator___pluginOptions___accessToken' |
   'pluginCreator___pluginOptions___siteUrl' |
+  'pluginCreator___pluginOptions___trackingId' |
+  'pluginCreator___pluginOptions___head' |
+  'pluginCreator___pluginOptions___anonymize' |
+  'pluginCreator___pluginOptions___respectDNT' |
+  'pluginCreator___pluginOptions___pageTransitionDelay' |
+  'pluginCreator___pluginOptions___defer' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
   'pluginCreator___browserAPIs' |
@@ -4183,6 +4189,12 @@ export type SitePluginFieldsEnum =
   'pluginOptions___spaceId' |
   'pluginOptions___accessToken' |
   'pluginOptions___siteUrl' |
+  'pluginOptions___trackingId' |
+  'pluginOptions___head' |
+  'pluginOptions___anonymize' |
+  'pluginOptions___respectDNT' |
+  'pluginOptions___pageTransitionDelay' |
+  'pluginOptions___defer' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
   'browserAPIs' |
@@ -4301,6 +4313,12 @@ export type SitePluginPluginOptions = {
   spaceId?: Maybe<Scalars['String']>;
   accessToken?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
+  trackingId?: Maybe<Scalars['String']>;
+  head?: Maybe<Scalars['Boolean']>;
+  anonymize?: Maybe<Scalars['Boolean']>;
+  respectDNT?: Maybe<Scalars['Boolean']>;
+  pageTransitionDelay?: Maybe<Scalars['Int']>;
+  defer?: Maybe<Scalars['Boolean']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
@@ -4310,6 +4328,12 @@ export type SitePluginPluginOptionsFilterInput = {
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
   siteUrl?: Maybe<StringQueryOperatorInput>;
+  trackingId?: Maybe<StringQueryOperatorInput>;
+  head?: Maybe<BooleanQueryOperatorInput>;
+  anonymize?: Maybe<BooleanQueryOperatorInput>;
+  respectDNT?: Maybe<BooleanQueryOperatorInput>;
+  pageTransitionDelay?: Maybe<IntQueryOperatorInput>;
+  defer?: Maybe<BooleanQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 

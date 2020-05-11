@@ -8,6 +8,7 @@ import {
 } from '@contentful/rich-text-react-renderer'
 import Gallery, { renderImageClickHandler } from 'react-photo-gallery'
 import Carousel, { Modal, ModalGateway } from 'react-images'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import styles from './project.module.scss'
 import { ProjectBySlugQuery } from '../../graphql-types'
@@ -43,19 +44,31 @@ const options: Options = {
       return null
     },
     [INLINES.HYPERLINK]: node => {
+      if (node.data.uri.includes('youtube.com/embed/')) {
+        return (
+          <span className={styles.iframeWrapper}>
+            <iframe
+              // value "doesn't exist" on content so ignoring it for now
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              title={node.content[0].value ?? 'YouTube embedded video'}
+              src={node.data.uri}
+              frameBorder={0}
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </span>
+        )
+      }
+
       return (
-        <div className={styles.iframeWrapper}>
-          <iframe
-            // value "doesn't exist" on content so ignoring it for now
-            // eslint-disable-next-line
+        <OutboundLink href={node.data.uri}>
+          {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            title={node.content[0].value ?? 'YouTube embedded video'}
-            src={node.data.uri}
-            frameBorder={0}
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+            node.content[0].value
+          }
+        </OutboundLink>
       )
     },
   },

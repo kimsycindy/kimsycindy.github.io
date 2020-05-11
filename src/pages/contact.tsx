@@ -1,4 +1,5 @@
 import React from 'react'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import Page from '../components/Page'
 import Container from '../components/Container'
@@ -13,8 +14,10 @@ const ContactPage: React.FC = () => (
         <TextHeader priority={1}>Contact</TextHeader>
         <p>
           You can email me at{' '}
-          <a href="mailto:hello@cindy.kim">hello@cindy.kim</a> or use the form
-          below.
+          <OutboundLink href="mailto:hello@cindy.kim">
+            hello@cindy.kim
+          </OutboundLink>{' '}
+          or use the form below.
         </p>
         {process.env.GATSBY_GETFORM_KEY && (
           <ContactForm getFormKey={process.env.GATSBY_GETFORM_KEY} />
