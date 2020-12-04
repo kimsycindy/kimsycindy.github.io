@@ -25,21 +25,25 @@ const IndexPage: React.FC<Props> = ({ data: { image0, image1 } }) => (
         </FluidImageWrapper>
 
         <p>
-          I am a writer and artist with experience in creative writing, social
-          media, and copywriting.
+          I am a recent Drama graduate of Queen Mary University of London with
+          experience in playwriting and working at a London-based VR theatre
+          startup, looking for avenues to develop experience with immersive
+          storytelling.
         </p>
         <p>
-          I create work with a thoughtful, conscientious approach to the
-          implications of rapidly developing technology, and exploring the
-          fascinating - and unexpected! - ways it permeates and cross-pollinates
-          every aspect of our lives, for better or worse.
+          I'm passionate about stories that facilitate intersectional social
+          change, particularly about AI, VR, and other emerging technologies.
+          Recently, I’ve written and directed a play about the intersection of
+          automation and criminal processes in crisis that was performed at the
+          2019 Edinburgh Festival Fringe.
         </p>
         <p>
-          We're all strapped into a rocket ship and we don't know where it will
-          take us, but if we stare hard enough beyond the stars, we might be
-          able to glimpse where we're going.
+          With earnest urgency in mind, I create work with a thoughtful,
+          conscientious approach to the implications of rapidly developing
+          technology, and exploring the fascinating - and unexpected! - ways it
+          permeates and cross-pollinates every aspect of our lives.
         </p>
-        <p>Or something like that.</p>
+        <p />
 
         <TextHeader priority={2}>What do I do?</TextHeader>
 
@@ -47,19 +51,6 @@ const IndexPage: React.FC<Props> = ({ data: { image0, image1 } }) => (
           <Img fluid={image1?.childImageSharp?.fluid as FluidObject} />
         </FluidImageWrapper>
 
-        <p>
-          My work deals with the <i>effective intersection</i> of theatre and
-          technology.
-        </p>
-
-        <p>
-          I also have a deep interest in virtual and augmented reality
-          experiences powered by 360-degree video.
-        </p>
-        <p>
-          Creative writing takes all forms - it can be a social media post or
-          newsletter copy.
-        </p>
         <p>
           In Hong Kong, I've worked as a creative intern at HKELD, where my
           responsibilities included community outreach, content acquisition, and
