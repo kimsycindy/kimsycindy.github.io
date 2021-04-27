@@ -49,3 +49,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
   ],
 }
+
+if (process.env.NODE_ENV === 'development') {
+  module.exports.plugins.push('gatsby-plugin-graphql-codegen')
+}

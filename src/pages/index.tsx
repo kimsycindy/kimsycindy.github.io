@@ -28,15 +28,9 @@ const IndexPage: React.FC<Props> = ({ data: { profile } }) => (
 
           <div className={styles.ContentText}>
             <p>
-              I am a recent Drama graduate of Queen Mary University of London
-              with experience in playwriting and working at a London-based VR
-              theatre startup, looking for avenues to develop experience with
-              immersive storytelling.
-            </p>
-            <p>
               I'm passionate about stories that facilitate intersectional social
               change, particularly about AI, VR, and other emerging
-              technologies. Recently, I’ve written and directed a play about the
+              technologies. I've written and directed a play about the
               intersection of automation and criminal processes in crisis that
               was performed at the 2019 Edinburgh Festival Fringe.
             </p>

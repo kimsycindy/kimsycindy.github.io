@@ -1,12 +1,45 @@
+@import '../styles/variables.scss';
+
 .Content {
-  display: flex;
+  @media screen and (min-width: $breakpoint-md) {
+    display: flex;
+  }
 }
 
 .ContentPhoto {
-  flex: 1;
-  margin-right: 20px;
+  max-width: 250px;
+  margin: 0 auto 20px auto;
+
+  @media screen and (min-width: $breakpoint-md) {
+    flex: 1;
+    margin: 0 20px 0 0;
+    max-width: 800px;
+  }
 }
 
 .ContentText {
-  flex: 1;
+  height: 100%;
+
+  @media screen and (min-width: $breakpoint-md) {
+    flex: 1;
+    position: relative;
+    background: $black;
+    border: 5px solid $accent;
+    border-radius: 0.5em;
+    padding: 25px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 25px solid transparent;
+      border-right-color: $accent;
+      border-left: 0;
+      margin-top: -20px;
+      margin-left: -25px;
+    }
+  }
 }
