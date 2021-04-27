@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { isFilled } from 'ts-is-present'
+import Lightbox from 'react-image-lightbox'
+import 'react-image-lightbox/style.css'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import {
   documentToReactComponents,
@@ -8,13 +11,9 @@ import {
 } from '@contentful/rich-text-react-renderer'
 import Gallery, { renderImageClickHandler } from 'react-photo-gallery'
 import Carousel, { Modal, ModalGateway } from 'react-images'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
-
 import styles from './project.module.scss'
 import { ProjectBySlugQuery } from '../../graphql-types'
-
 import Page from '../components/Page'
-import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
 import GalleryImageRenderer from '../components/GalleryImageRenderer'
 import IndexLayout from '../layouts'
@@ -74,11 +73,11 @@ const options: Options = {
   },
 }
 
-interface Props {
+interface ProjectTemplateProps {
   data: ProjectBySlugQuery
 }
 
-const ProjectTemplate: React.FC<Props> = ({ data }) => {
+const ProjectTemplate = ({ data }: ProjectTemplateProps) => {
   const [currentImage, setCurrentImage] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const { contentfulProject } = data
@@ -136,7 +135,31 @@ const ProjectTemplate: React.FC<Props> = ({ data }) => {
             onClick={(event, photo) => openLightbox(event, photo)}
             margin={2}
           />
-          <ModalGateway>
+          {modalIsOpen && (
+            <Lightbox
+              mainSrc={galleryPhotos[currentImage].src}
+              nextSrc={
+                galleryPhotos[(currentImage + 1) % galleryPhotos.length].src
+              }
+              prevSrc={
+                galleryPhotos[
+                  (currentImage === 0 ? 0 : currentImage - 1) %
+                    galleryPhotos.length
+                ].src
+              }
+              onCloseRequest={closeLightbox}
+              onMovePrevRequest={() =>
+                setCurrentImage(
+                  (currentImage + galleryPhotos.length - 1) %
+                    galleryPhotos.length
+                )
+              }
+              onMoveNextRequest={() =>
+                setCurrentImage((currentImage + 1) % galleryPhotos.length)
+              }
+            />
+          )}
+          {/* <ModalGateway>
             {modalIsOpen && (
               <Modal onClose={() => closeLightbox()}>
                 <Carousel
@@ -148,7 +171,7 @@ const ProjectTemplate: React.FC<Props> = ({ data }) => {
                 />
               </Modal>
             )}
-          </ModalGateway>
+          </ModalGateway> */}
         </>
       )
     }
@@ -159,12 +182,10 @@ const ProjectTemplate: React.FC<Props> = ({ data }) => {
   return (
     <IndexLayout>
       <Page>
-        <Container>
-          <Link to="/projects">{'<'} all projects</Link>
-          <TextHeader priority={1}>{contentfulProject?.title ?? ''}</TextHeader>
-          {documentToReactComponents(contentfulProject?.body?.json, options)}
-          {renderGallery()}
-        </Container>
+        <Link to="/projects">{'<'} all projects</Link>
+        <TextHeader priority={1}>{contentfulProject?.title ?? ''}</TextHeader>
+        {documentToReactComponents(contentfulProject?.body?.json, options)}
+        {renderGallery()}
       </Page>
     </IndexLayout>
   )

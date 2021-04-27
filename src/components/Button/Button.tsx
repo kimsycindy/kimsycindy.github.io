@@ -1,18 +1,17 @@
 import React from 'react'
-import cx from 'classnames'
-
 import styles from './Button.module.scss'
 import { BUTTON_TYPES } from './constants'
 
-interface Props {
+interface ButtonProps {
   type: BUTTON_TYPES.SUBMIT | BUTTON_TYPES.RESET | BUTTON_TYPES.BUTTON
   disabled: boolean
   className?: string
+  children: React.ReactNode
 }
 
-const Button: React.FC<Props> = ({ type, disabled, className, children }) => (
+const Button = ({ type, disabled, className, children }: ButtonProps) => (
   <button
-    className={cx(styles.Button, className)}
+    className={`${styles.Button} ${className}`}
     type={type}
     disabled={disabled}
   >

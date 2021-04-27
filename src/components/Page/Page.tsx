@@ -1,14 +1,16 @@
 import React from 'react'
-import cx from 'classnames'
-
 import styles from './Page.module.scss'
+import Container from '../Container'
 
-interface Props {
+interface PageProps {
+  children: React.ReactNode
   className?: string
 }
 
-const Page: React.FC<Props> = ({ children, className }) => (
-  <div className={cx(styles.Page, className)}>{children}</div>
+const Page = ({ children, className }: PageProps) => (
+  <div className={`${styles.Page} ${className}`}>
+    <Container>{children}</Container>
+  </div>
 )
 
 export default Page

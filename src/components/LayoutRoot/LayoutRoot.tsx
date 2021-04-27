@@ -1,14 +1,13 @@
 import React from 'react'
-import cx from 'classnames'
-
 import styles from './LayoutRoot.module.scss'
 
-interface Props {
+interface LayoutRootProps {
+  children: React.ReactNode
   className?: string
 }
 
-const LayoutRoot: React.FC<Props> = ({ children, className }) => (
-  <div className={cx(styles.LayoutRoot, className)}>{children}</div>
+const LayoutRoot = ({ children, className }: LayoutRootProps) => (
+  <div className={`${styles.LayoutRoot} ${className}`}>{children}</div>
 )
 
 export default LayoutRoot

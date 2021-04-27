@@ -1,8 +1,7 @@
 import React from 'react'
-
 import styles from './Textarea.module.scss'
 
-interface Props {
+interface TextareaProps {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   name: string
   label: string
@@ -11,14 +10,14 @@ interface Props {
   required?: boolean
 }
 
-export const Textarea: React.FC<Props> = ({
+export const Textarea = ({
   onChange,
   name,
   label,
   value,
   placeholder,
   required = false,
-}) => (
+}: TextareaProps) => (
   <div>
     <label htmlFor={name}>
       {label}

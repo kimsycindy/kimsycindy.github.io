@@ -1,7 +1,5 @@
 import React, { useReducer } from 'react'
-
 import styles from './ContactForm.module.scss'
-
 import {
   GETFORM_ENDPOINT,
   SUCCESS_MESSAGE,
@@ -10,16 +8,15 @@ import {
 } from './constants'
 import { reducer, initialState } from './reducer'
 import { valueChanged, submitStart, submitStop } from './actions'
-
 import { Text, FormControlsTextElement } from '../FormControls/Text'
 import { Textarea, FormControlsTextareaElement } from '../FormControls/Textarea'
 import SubmitButton from '../SubmitButton'
 
-interface Props {
+interface ContactFormProps {
   getFormKey: string
 }
 
-const ContactForm: React.FC<Props> = ({ getFormKey }) => {
+const ContactForm = ({ getFormKey }: ContactFormProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleOnSubmit = (e: React.FormEvent) => {

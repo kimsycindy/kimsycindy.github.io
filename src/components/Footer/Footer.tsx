@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Footer.module.scss'
 
-const Footer: React.FC = () => (
+const Footer = () => (
   <footer className={styles.Footer}>
     <small>&copy;{new Date().getFullYear()} Cindy Kim</small> |{' '}
     <small>

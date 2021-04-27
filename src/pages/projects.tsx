@@ -1,77 +1,70 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import groupBy from 'lodash.groupby'
-
 import styles from './projects.module.scss'
 import { ProjectsPageQuery } from '../../graphql-types'
-
 import Page from '../components/Page'
-import Container from '../components/Container'
 import TextHeader from '../components/TextHeader'
 import IndexLayout from '../layouts'
 
-interface Props {
+interface ProjectsPageProps {
   data: ProjectsPageQuery
 }
 
 const projectsPath = '/projects/'
 
-const ProjectsPage: React.FC<Props> = ({
+const ProjectsPage = ({
   data: {
     allContentfulProject: { group },
   },
-}) => (
+}: ProjectsPageProps) => (
   <IndexLayout>
     <Page>
-      <Container>
-        <TextHeader priority={1}>Projects</TextHeader>
-        <div className={styles.categories}>
-          {[...group].map(category => {
-            const categoryTitle = category?.nodes[0]?.category?.title ?? ''
+      <TextHeader priority={1}>Projects</TextHeader>
+      <div className={styles.categories}>
+        {[...group].map(category => {
+          const categoryTitle = category?.nodes[0]?.category?.title ?? ''
 
-            const parsedCategory = category.nodes
-              .map(node => ({
-                ...node,
-                year: new Date(node.date).getFullYear(),
-              }))
-              .sort(
-                (a, b) =>
-                  // Sort by newest first
-                  new Date(b.date).getTime() - new Date(a.date).getTime()
-              )
-
-            const groupedByYear = groupBy(parsedCategory, 'year')
-
-            return (
-              <div className={styles.category} key={categoryTitle}>
-                <TextHeader priority={2}>{categoryTitle}</TextHeader>
-                <>
-                  {Object.keys(groupedByYear)
-                    .reverse()
-                    .map(year => (
-                      <div key={`projects-${year}`}>
-                        <h3>{year}</h3>
-                        <ul>
-                          {groupedByYear[year].map(node => {
-                            const { id, slug, title } = node
-
-                            return (
-                              <li key={id}>
-                                <Link to={`${projectsPath}${slug}`}>
-                                  {title}
-                                </Link>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      </div>
-                    ))}
-                </>
-              </div>
+          const parsedCategory = category.nodes
+            .map(node => ({
+              ...node,
+              year: new Date(node.date).getFullYear(),
+            }))
+            .sort(
+              (a, b) =>
+                // Sort by newest first
+                new Date(b.date).getTime() - new Date(a.date).getTime()
             )
-          })}
-        </div>
-      </Container>
+
+          const groupedByYear = groupBy(parsedCategory, 'year')
+
+          return (
+            <div className={styles.category} key={categoryTitle}>
+              <TextHeader priority={2}>{categoryTitle}</TextHeader>
+              <>
+                {Object.keys(groupedByYear)
+                  .reverse()
+                  .map(year => (
+                    <div key={`projects-${year}`}>
+                      <h3>{year}</h3>
+                      <ul>
+                        {groupedByYear[year].map(node => {
+                          const { id, slug, title } = node
+
+                          return (
+                            <li key={id}>
+                              <Link to={`${projectsPath}${slug}`}>{title}</Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+              </>
+            </div>
+          )
+        })}
+      </div>
     </Page>
   </IndexLayout>
 )

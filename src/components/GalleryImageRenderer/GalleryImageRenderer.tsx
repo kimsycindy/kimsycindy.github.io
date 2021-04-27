@@ -4,12 +4,12 @@ import { RenderImageProps } from 'react-photo-gallery'
 
 import styles from './GalleryImageRenderer.module.scss'
 
-const GalleryImageRenderer: React.FC<RenderImageProps> = ({
+const GalleryImageRenderer = ({
   index,
   photo,
   margin,
   onClick,
-}) => {
+}: RenderImageProps) => {
   const fluidObject: FluidObject = {
     aspectRatio: photo.width / photo.height,
     src: photo.src,

@@ -1,8 +1,7 @@
 import React from 'react'
-
 import styles from './Text.module.scss'
 
-interface Props {
+interface TextProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   type: 'email' | 'text'
   name: string
@@ -12,7 +11,7 @@ interface Props {
   required?: boolean
 }
 
-export const Text: React.FC<Props> = ({
+export const Text = ({
   onChange,
   type,
   name,
@@ -20,7 +19,7 @@ export const Text: React.FC<Props> = ({
   value,
   placeholder,
   required = false,
-}) => (
+}: TextProps) => (
   <div>
     <label htmlFor={name}>
       {label}

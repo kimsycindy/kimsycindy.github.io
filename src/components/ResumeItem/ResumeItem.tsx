@@ -1,12 +1,12 @@
 import React from 'react'
 
-interface Props {
+interface ResumeItemProps {
   company: string
   subtitle: string
   position?: string
 }
 
-const ResumeItem: React.FC<Props> = ({ company, subtitle, position }) => (
+const ResumeItem = ({ company, subtitle, position }: ResumeItemProps) => (
   <p>
     <strong>{company}</strong> | {subtitle}
     {position && (

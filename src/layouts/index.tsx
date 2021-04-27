@@ -2,16 +2,14 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import { IndexLayoutQuery } from '../../graphql-types'
-
 import 'modern-normalize'
 import '../styles/normalize.scss'
-
 import Navbar from '../components/Navbar'
 import LayoutRoot from '../components/LayoutRoot'
 import LayoutMain from '../components/LayoutMain'
 import Footer from '../components/Footer'
 
-const IndexLayout: React.FC = ({ children }) => {
+const IndexLayout = ({ children }: { children: React.ReactNode }) => {
   const data = useStaticQuery<IndexLayoutQuery>(graphql`
     query IndexLayout {
       site {

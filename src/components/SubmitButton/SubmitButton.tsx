@@ -1,11 +1,9 @@
 import React from 'react'
-import cx from 'classnames'
-
 import styles from './SubmitButton.module.scss'
 import Button from '../Button'
 import { BUTTON_TYPES } from '../Button/constants'
 
-interface Props {
+interface SubmitButtonProps {
   submitting: boolean
   submittingText: string
   status: {
@@ -13,17 +11,18 @@ interface Props {
     msg: string
   }
   className?: string
+  children: React.ReactNode
 }
 
-const SubmitButton: React.FC<Props> = ({
+const SubmitButton = ({
   submitting,
   submittingText,
   status: { ok, msg },
   className,
   children,
-}) => (
+}: SubmitButtonProps) => (
   <Button
-    className={cx(styles.SubmitButton, className)}
+    className={`${styles.SubmitButton} ${className}`}
     type={BUTTON_TYPES.SUBMIT}
     disabled={submitting || ok}
   >
