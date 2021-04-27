@@ -6,6 +6,7 @@ import { IndexImagesQuery } from '../../graphql-types'
 import Page from '../components/Page'
 import TextHeader from '../components/TextHeader'
 import IndexLayout from '../layouts'
+import 'animate.css'
 
 interface IndexPageProps {
   data: IndexImagesQuery
@@ -18,11 +19,13 @@ const IndexPage = ({ data: { profile } }: IndexPageProps) => (
 
       <div className={styles.Content}>
         <Img
-          className={styles.ContentPhoto}
+          className={`${styles.ContentPhoto} animate__animated animate__bounceInLeft`}
           fluid={profile?.childImageSharp?.fluid as FluidObject}
         />
 
-        <div className={styles.ContentText}>
+        <div
+          className={`${styles.ContentText} animate__animated animate__bounceInRight`}
+        >
           <p>
             I'm passionate about stories that facilitate intersectional social
             change, particularly about AI, VR, and other emerging technologies.
