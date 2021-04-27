@@ -2,7 +2,7 @@
 
 exports[`IndexLayout renders correctly 1`] = `
 <div
-  className="LayoutRoot"
+  className="LayoutRoot undefined"
 >
   <nav
     className="NavbarContainer"
@@ -42,6 +42,11 @@ exports[`IndexLayout renders correctly 1`] = `
         <a
           className="Link"
           href="https://www.linkedin.com/in/cindy-kim-924b48132/"
+          style={
+            Object {
+              "width": 14,
+            }
+          }
         >
           <svg
             aria-hidden="true"
@@ -64,6 +69,11 @@ exports[`IndexLayout renders correctly 1`] = `
         <a
           className="Link"
           href="https://twitter.com/kimsycindy"
+          style={
+            Object {
+              "width": 14,
+            }
+          }
         >
           <svg
             aria-hidden="true"
@@ -87,7 +97,7 @@ exports[`IndexLayout renders correctly 1`] = `
     </div>
   </nav>
   <div
-    className="LayoutMain"
+    className="LayoutMain undefined"
   >
     <div>
       IndexLayout

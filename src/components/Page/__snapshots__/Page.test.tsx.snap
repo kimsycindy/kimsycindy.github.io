@@ -4,8 +4,12 @@ exports[`Page renders correctly 1`] = `
 <div
   className="Page page-mock"
 >
-  <div>
-    Page
+  <div
+    className="Container undefined"
+  >
+    <div>
+      Page
+    </div>
   </div>
 </div>
 `;

@@ -2,7 +2,7 @@
 
 exports[`Button renders correctly 1`] = `
 <button
-  className="Button"
+  className="Button undefined"
   disabled={false}
   type="button"
 >

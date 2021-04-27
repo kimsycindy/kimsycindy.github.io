@@ -2,7 +2,7 @@
 
 exports[`SubmitButton renders correctly 1`] = `
 <button
-  className="Button SubmitButton"
+  className="Button SubmitButton undefined"
   disabled={false}
   type="submit"
 />
