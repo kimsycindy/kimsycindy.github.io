@@ -159,19 +159,6 @@ const ProjectTemplate = ({ data }: ProjectTemplateProps) => {
               }
             />
           )}
-          {/* <ModalGateway>
-            {modalIsOpen && (
-              <Modal onClose={() => closeLightbox()}>
-                <Carousel
-                  currentIndex={currentImage}
-                  views={galleryPhotos.map(photo => ({
-                    source: photo.src,
-                    caption: photo.description,
-                  }))}
-                />
-              </Modal>
-            )}
-          </ModalGateway> */}
         </>
       )
     }
