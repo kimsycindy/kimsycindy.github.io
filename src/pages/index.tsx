@@ -19,12 +19,12 @@ const IndexPage = ({ data: { profile } }: IndexPageProps) => (
 
       <div className={styles.Content}>
         <Img
-          className={`${styles.ContentPhoto} animate__animated animate__bounceInLeft`}
+          className={`${styles.ContentPhoto} animate__animated animate__fadeInLeft`}
           fluid={profile?.childImageSharp?.fluid as FluidObject}
         />
 
         <div
-          className={`${styles.ContentText} animate__animated animate__bounceInRight`}
+          className={`${styles.ContentText} animate__animated animate__fadeInRight`}
         >
           <p>
             I'm passionate about stories that facilitate intersectional social
